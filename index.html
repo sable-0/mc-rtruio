@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<meta name="renderer" content="webkit">
+		<title>虚无而生x星痕辉光Rtruio</title>
+		<script src="js/jquery-3.3.1.min.1.js"></script>
+		<link rel="shortcut icon" type="image/x-icon"  href="img/favicon.jpg"/>
+		<link rel="stylesheet" type="text/css" href="css/main.css"  />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
+		<script src="js/main.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.growl.js"></script>
+		<script src="js/bootbox.js"></script>
+		<script src="js/jquery.base64.js"></script>
+		<style type="text/css">
+			@font-face {
+				font-family:'Minecraft';
+				src: url(fonts/Minecraft.ttf);
+			}
+			a{
+				text-decoration: none;
+			}
+		</style>
+		<script>
+		</script>
+
+</head>
+<body>
+	<div class="main_page" id="main_page" style="background-image: url(img/01.jpg);">
+	<div class="main_top" style="background-image: url(img/dark60-bg-repeat.png);opacity: 0.7;" ></div>
+	<nav class="navbar" role="navigation" style="z-index: 1000" >
+		<div class="container-fluid" >
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#example-navbar-collapse" style="z-index: 10000;"><b class="caret"></b>
+				<span class="sr-only">切换导航</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a  class="main_top_title" href="index.html" >rtruio</a>
+		</div>
+		<div class="collapse navbar-collapse" id="example-navbar-collapse" style="color: white;min-width: 900px;" >
+			<ul class="nav navbar-nav" style="color: white;">
+				<li class="dropdown"  ><a href="#" class="dropdown-toggle" data-toggle="dropdown"  >服务器介绍</a>
+					<ul class="dropdown-menu" style="background-color: rgb(255,255,255,0.7);" >
+						<li><a href="http://www.mcbbs.net/thread-811989-1-1.html" target="_blank">MCBBS宣传</a></li>
+						<li><a href="http://www.mckuai.com/thread-2060746.html" target="_blank">麦块宣传</a></li>
+						<li class="divider" style="background-color: gray;"></li>
+						<li><a href="https://play.mcmod.cn/sv20181426.html" target="_blank">MC百科</a></li>
+						<li><a href="https://tieba.baidu.com/p/6045698510?red_tag=1931250082" target="_blank">贴吧</a></li>
+					</ul>
+				</li>
+				<li class="active" ><a href="#" style="width: 90px;margin-left: 20px;">合成查询</a></li>
+				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80px;margin-left: 20px;">教程 <b class="caret"></b></a>
+					<ul class="dropdown-menu" style="background-color: rgb(255,255,255,0.7);left:-20px;" >
+						<li><a href="http://www.mcbbs.net/" target="_blank">MCbbs</a></li>
+						<li><a href="https://www.mcmod.cn/" target="_blank">MCmod</a></li>
+						<li class="divider" style="background-color: gray;"></li>
+						<li><a href="https://www.mcmod.cn/class/204.html" target="_blank">神秘4</a></li>
+						<li><a href="https://www.mcmod.cn/class/332.html" target="_blank">植物魔法</a></li>
+						<li><a href="https://www.mcmod.cn/class/402.html" target="_blank">超能力</a></li>
+						<li><a href="https://www.mcmod.cn/class/401.html" target="_blank">虚无世界2</a></li>
+						<li><a href="https://www.mcmod.cn/class/260.html" target="_blank">应用能源2(AE2)</a></li>
+						<li class="divider" style="background-color: gray;"></li>
+						<li><a href="https://www.mcmod.cn/tools/tctool/" target="_blank">神秘研究助手</a></li>
+						<li><a href="https://www.mcmod.cn/item/aspects/" target="_blank">神秘要素表</a></li>
+					</ul>
+				</li>
+	
+				<li class="active" ><a href="#" style="width: 80px;margin-left: 20px;">排行榜</a></li>
+				<li class="active" ><a href="http://www.mcrmb.com/cz/15594" style="width: 60px;margin-left: 20px;" target="_blank">赞助</a></li>
+				<form class="navbar-form navbar-left" role="search" action="https://www.mcmod.cn/s" id="s">
+					  <div class="form-group" style="opacity: 0.7;">
+						<input type="text" class="form-control" placeholder="baidu" name="key">
+					  </div>
+					  <button type="submit" class="btn btn-default" style="opacity: 0.7;" id="mcmod" formtarget="_blank">搜嗷</button>
+				</form>
+
+			</ul>
+			
+				<!-- <ul class="nav navbar-nav navbar-right ">
+					<li><a id="loginButton" data-toggle="modal" data-target="#myModal" style="cursor: pointer;transition: .5s;"><span class="glyphicon glyphicon-log-in" ></span> 点我登录</a></li>
+				</ul> -->
+				<ul class="nav navbar-nav navbar-right " id="personalInfo">
+					<li><a id="loginButton" data-toggle="modal" data-target="#myModal"  style="cursor: pointer;transition: .5s;" ><span class="glyphicon glyphicon-log-in" ></span> 点我登录</a></li>
+				</ul>
+			
+		</div>
+		</div>
+	</nav>
+ 
+ 
+ 
+				<!-- 模态框（Modal） -->
+	
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="true" style="margin-top: 150px;">
+			<div class="modal-dialog" style="width: 400px;">
+				<div class="modal-content">
+					<!--登陆框头部-->
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							×
+						</button>
+						<h4 class="modal-title" id="myModalLabel" >
+							欢迎登陆！
+						</h4>
+						
+					</div>
+					<!--登陆框中间部分(from表单)-->
+					<div class="modal-body">
+						<form class="form-horizontal" action="Login.ashx" id="formUpload" method="post" enctype="multipart/form-data">
+							<br />
+								<div class="form-group">
+									<label for="username" class="col-sm-3 control-label">用户名</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="username" name="username" placeholder="请输入您的用户名或绑定的QQ" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="password" class="col-sm-3 control-label">密码</label>
+									<div class="col-sm-8">
+										<input type="password" class="form-control" id="password" name="password" placeholder="请输入游戏内的密码" />
+									</div>
+								</div>
+								<!--
+								<div class="form-group">
+									<label for="number" class="col-sm-3 control-label">手机</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="number" name="number" placeholder="手机号"/>
+									</div>
+								</div>
+								-->
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-4">
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" id="SaveInfo" > 记住密码
+											</label>
+										</div>
+									</div>
+								</div>
+							<!--登陆按钮-->
+							
+							<div class="form-group">
+								<div class="col-sm-offset-7 col-sm-10">
+									<button class="btn btn-default" type="button" data-dismiss="modal" data-target="#myModal">取消</button>
+									<button class="btn btn-primary " type="button" onclick="btnLogin()">登录</button>
+								</div>
+							</div>
+						</form>
+						
+						
+						
+				</div>	
+			</div>
+		</div>
+		</div>
+	
+	
+	<!---------#登录界面#------------>
+	
+	
+	
+	<!---------#主页未登录#------------>
+	
+	<div class="main_center">
+		<div class="main_center_title">
+			<h1 class="title"><img src="img/logo.png" style="height: 80px;width: 80px;" />Rtruio虚无而生  </h1>
+			<p class="title_one">Welcome to my server !</p>
+			<div id="personalInfo2">
+				<a class="btn_main_login" style="text-decoration: none;" href="download.html">下载客户端</a>
+				<a class="btn_main_login" style="margin-left: 50px;text-decoration: none;"
+				 data-toggle="modal" data-target="#myModal" >个人中心</a>
+			</div>
+			
+			<p class="service_status">当前服务器状态：<span>开启</span>&nbsp;&nbsp;&nbsp;
+			在线人数：<span id="num">2</span> </p>
+		</div>
+	</div>
+	<div class="ooooop" style="display:block;">
+		<div class="text">aaa</div>
+		<div class="shadow">aaa</div>
+	</div>
+
+	<!--      底层       -->
+    <div class="main_botton">
+    		<div class=""></div>Made with love by Deliberate. Recently update: 2019.08.06
+    		</div>
+    	<div class="notice"></div>
+	</div>
+</body>
+</html>
