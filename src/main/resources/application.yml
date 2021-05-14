@@ -1,0 +1,5 @@
+server:
+  port: 9444
+
+shiro:
+  loginUrl: http://localhost:9444/index.html
