@@ -218,6 +218,69 @@ public partial class _Default : System.Web.UI.Page
 
         return strResult;
     }
+
+    [WebMethod]
+    public static string getBackgroundNum()
+    {
+        //查询用户信息
+        string strJson = string.Empty;
+        SQLHelper sqlHelper = new SQLHelper();
+        string strSelect = "Select backgroundNum from tb_indexInfo";
+        DataSet ds = sqlHelper.getDataSet(strSelect);
+        DataTable dt = ds.Tables[0];
+        string backgroundNum = dt.Rows[0][0].ToString().Trim();
+        
+        return backgroundNum;
+    }
+    [WebMethod]
+    public static string getIndexShortInfo()
+    {
+        //读取短语信息
+        string strJson = string.Empty;
+
+        SQLHelper sqlHelper = new SQLHelper();
+
+        string strSelect = "Select indexSign from tb_indexInfo";
+
+        DataSet ds = sqlHelper.getDataSet(strSelect);
+
+        DataTable dt = ds.Tables[0];
+
+        if (dt.Rows.Count >= 1)
+        {
+            List<IndexShortInfo> isi = new List<IndexShortInfo>();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                IndexShortInfo isiObj = new IndexShortInfo();
+                isiObj.indexSign = dt.Rows[i]["indexSign"].ToString().Trim();
+
+                isi.Add(isiObj);
+            }
+            strJson = (new JavaScriptSerializer()).Serialize(isi);
+        }
+
+        return strJson;
+    }
+    
+    [WebMethod]
+    public static string UserUpdate(String UserName,String Password)
+    {
+        // 用户更改信息
+        string strResult = string.Empty;
+        string strInsert = "Update tb_UserInfo set Password='" + Password + "' Where UserName = '" + UserName + "'";
+        SQLHelper sqlHelper = new SQLHelper();
+        strResult = sqlHelper.ExcutCommand(strInsert).ToString();
+
+        return strResult;
+    }
+    [WebMethod]
+    public static string DeleteSession()
+    {
+        //退出登录
+        HttpContext.Current.Session.Clear();
+        return "0";
+            
+    }
     class ServiceInfo
     {
         public string ServiceOnline { get; set; }
@@ -239,5 +302,9 @@ public partial class _Default : System.Web.UI.Page
         public string TotalInAppPurchase { get; set; }
         public string UserID { get; set; }
     }
+    class IndexShortInfo
+    {
+        public string indexSign { get; set; }
 
+    }
 }

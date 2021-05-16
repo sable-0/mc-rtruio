@@ -48,9 +48,9 @@ function getCookie(){ //获取cookie
 function SetSession(d){
 	d = window.sessionStorage.getItem("IsLoged");
 	if(d=="true"){
-			 //获取cookie中username的值 传入serLogedHtml
-			 var username = $.cookie("username");
-			 setLogedHtml(username);
+		 //获取cookie中username的值 传入serLogedHtml
+		 var username = $.cookie("username");
+		 setLogedHtml(username);
 	}
 }
  function GetSession() {
@@ -80,20 +80,38 @@ function SetSession(d){
 		  $("#personalInfo2").empty();
 		  strAppend ="<a class='btn_main_login' style='text-decoration: none;' href='download.html'>下载客户端</a>"
 		 			+	"<a class='btn_main_login' style='margin-left: 50px;text-decoration: none;'"
-		 			+	"href='userSpace.html'>个人中心</a>"
+		 			+	"href='adminPage.html'>个人中心</a>"
 		 $("#personalInfo2").append(strAppend);
 	 }
 	 else{
 		 $("#personalInfo").empty();
-		  var strAppend = "<li><a href='userSpace.html' style='cursor: pointer;transition: .5s;' > "
+		  var strAppend = "<li><a href='userPage.html' style='cursor: pointer;transition: .5s;' > "
 		 		+ username + "</a></li>";
 		  $("#personalInfo").append(strAppend);
 		  $("#personalInfo2").empty();
 		  strAppend ="<a class='btn_main_login' style='text-decoration: none;' href='download.html'>下载客户端</a>"
 		 			+	"<a class='btn_main_login' style='margin-left: 50px;text-decoration: none;'"
-		 			+	"href='adminPage.html'>个人中心</a>"
+		 			+	"href='userPage.html'>个人中心</a>"
 		 $("#personalInfo2").append(strAppend);
 	 }
+ }
+ //退出登录
+ function DeleteSession(){
+ 	$.ajax({
+ 		url: "Default.aspx/DeleteSession", //发送到本页面后台AjaxMethod方法
+ 		type: "POST",
+ 		dataType: "json",
+ 		async: true, //async翻译为异步的，false表示同步，会等待执行完成，true为异步
+ 		contentType: "application/json; charset=utf-8", //不可少
+ 		data: {},
+ 		success: function(data) {
+ 			alert("退出成功");
+ 			window.location.href="index.html";
+ 		},
+ 		error: function() {
+ 			alert("请求出错处理");
+ 		}
+ 	});
  }
 // 获取服务器状态 显示在主页中央
 function getserviceSetting() {
@@ -126,38 +144,55 @@ function getserviceSetting() {
  // 随机更换壁纸
 function bodyBG(){
 	var bodyBgs = [];
-	for(var i=0;i<7;i++){
-		bodyBgs[i] = "url(img/background/"+ (i+1) +".jpg)";
-	}
-	var randomBgIndex = Math.round( Math.random() * bodyBgs.length);
-	$("#main_page").css("background-image", bodyBgs[randomBgIndex]);
+	$.ajax({
+		url: "Default.aspx/getBackgroundNum", //发送到本页面后台AjaxMethod方法
+		type: "POST",
+		dataType: "json",
+		async: true, //async翻译为异步的，false表示同步，会等待执行完成，true为异步
+		contentType: "application/json; charset=utf-8", //不可少
+		data: {},
+		success: function(data) {
+			var bgNum = data.d;
+			parseInt(bgNum);
+			for(var i=0;i<bgNum;i++){
+				bodyBgs[i] = "url(img/background/"+ (i+1) +".jpg)";
+			}
+			var randomBgIndex = Math.round( Math.random() * bodyBgs.length);
+			$("#main_page").css("background-image", bodyBgs[randomBgIndex]);
+		},
+		error: function() {
+			alert("请求出错处理");
+		}
+	});
+}
+//随机切换标语
+function bodySign(){
+	$.ajax({
+		url: "Default.aspx/getIndexShortInfo", //发送到本页面后台AjaxMethod方法
+		type: "POST",
+		dataType: "json",
+		async: true, //async翻译为异步的，false表示同步，会等待执行完成，true为异步
+		contentType: "application/json; charset=utf-8", //不可少
+		data: {},
+		success: function(data) {
+			var bgSignNum = JSON.parse(data.d);
+			var randomNum = Math.round( Math.random() * (bgSignNum.length-1) );
+			$(".text").text(bgSignNum[randomNum].indexSign);
+			$(".shadow").text(bgSignNum[randomNum].indexSign);
+		},
+		error: function() {
+			alert("请求出错处理");
+		}
+	});
 }
 $(function () {
-	getCookie();
-	GetSession();
-    bodyBG();
+	bodyBG(); //随机背景
+	bodySign(); //随机标语
+	getCookie(); //获取cookie
+	bodyBG();
+	GetSession(); //获取session（登陆状态）
 	getserviceSetting();
-    function randomText(){
-<!-----------ajax请求问题暂时无法解决，用数组代替--------------->
-        var rT = [];
-        rT[0] = "这些天你都做了些什么？";
-        rT[1] = "欢迎来到食物链的顶端";
-        rT[2] = "为我们的友谊干杯";
-        rT[3] = "你不用跟我说两次";
-        rT[4] = "嘿！那是癫子才会听的音乐！";
-        rT[5] = "矿脉已经枯竭！";
-        rT[6] = "其实我是一个演员";
-        rT[7] = "同道中人啊！";
-        rT[8] = "该练习一下APM了";
-        rT[9] = "死透了";
-        rT[10] = "不将就";
-        rT[11] = "手里拿着旺旺";
-        var rrT = Math.round( Math.random() * 11 );
-        $(".text").text(rT[rrT]);
-        $(".shadow").text(rT[rrT]);
-    }
-    randomText();
-
+	
 	$(".dropdown").mouseover(function () { 
 		$(this).addClass("open"); }); 
 	$(".dropdown").mouseleave(function(){
