@@ -70,7 +70,7 @@ function SetSession(d){
 		 }
 	 });
  }
- // 修改网页中的数据
+ // 修改登陆成功后网页中的数据
  function setLogedHtml(username){
 	 if(username=="admin"){
 		 $("#personalInfo").empty();
@@ -95,45 +95,49 @@ function SetSession(d){
 		 $("#personalInfo2").append(strAppend);
 	 }
  }
+// 获取服务器状态 显示在主页中央
+function getserviceSetting() {
+	$.ajax({
+		url: "Default.aspx/GetServiceSetting", //发送到本页面后台AjaxMethod方法
+		type: "POST",
+		dataType: "json",
+		async: true, //async翻译为异步的，false表示同步，会等待执行完成，true为异步
+		contentType: "application/json; charset=utf-8", //不可少
+		data: "",
+		success: function(strJson) {
+			var jsonObjList = JSON.parse(strJson.d);
+			var serviceOnline1 = jsonObjList[0].ServiceOnline;
+			var serviceState1 = jsonObjList[0].ServiceState;
+			var strState1;
+			if (serviceState1 == "1") {
+				strState1 = "开启";
+			} else {
+				strState1 = "关闭";
+				serviceOnline1 = "0";
+			}
+			$("#serState").html(strState1);
+			$("#serNum").html(serviceOnline1);
+		},
+		error: function() {
+			alert("请求出错处理");
+		}
+	});
+}
+ // 随机更换壁纸
+function bodyBG(){
+	var bodyBgs = [];
+	for(var i=0;i<7;i++){
+		bodyBgs[i] = "url(img/background/"+ (i+1) +".jpg)";
+	}
+	var randomBgIndex = Math.round( Math.random() * bodyBgs.length);
+	$("#main_page").css("background-image", bodyBgs[randomBgIndex]);
+}
 $(function () {
 	getCookie();
 	GetSession();
-    <!------------随机更换壁纸------------->
-    function bodyBG(){
-        var bodyBgs = [];
-//        bodyBgs[0] = "url(/static/img/01.jpg)";
-//        bodyBgs[1] = "url(/static/img/02.jpg)";
-//        bodyBgs[2] = "url(/static/img/03.jpg)";
-//        bodyBgs[3] = "url(/static/img/04.jpg)";
-//        bodyBgs[4] = "url(/static/img/05.jpg)";
-//        bodyBgs[5] = "url(/static/img/06.jpg)";
-//        bodyBgs[6] = "url(/static/img/07.jpg)";
-//        var randomBgIndex = Math.round( Math.random() * 6 );
-//        $("#main_page").css("background-image", bodyBgs[randomBgIndex]);
-        for(var i=0;i<7;i++){
-            bodyBgs[i] = "url(img/0"+ (i+1) +".jpg)";
-        }
-        var randomBgIndex = Math.round( Math.random() * 7 );
-        $("#main_page").css("background-image", bodyBgs[randomBgIndex]);
-    }
     bodyBG();
-	<!------------随机更换壁纸------------->
-
+	getserviceSetting();
     function randomText(){
-//    $.ajax({
-//        type : 'post',
-//        dataType : 'json',
-//        url : 'rtruio/rT',
-//        success : function(data){
-//            var status = data.status;
-//            if(data.code == "0"){
-//                $(".text").empty();
-//                $(".text").text(data.temp);
-//            }else{
-//                alert(data.status);
-//            }
-//        }
-//    })
 <!-----------ajax请求问题暂时无法解决，用数组代替--------------->
         var rT = [];
         rT[0] = "这些天你都做了些什么？";
@@ -163,12 +167,6 @@ $(function () {
 	$("#pulldown").mouseleave(function(){
 		$(this).css("display","none"); })
 
-    function snum(){
-        var num = Math.random();
-        num = Math.ceil(num * 10)
-        $("#num").text(num);
-    }
-    snum();
     <!------------雪花特效------------>
     function aniSnow(){
         var wh=$(window).height();

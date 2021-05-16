@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-	<meta name="renderer" content="webkit">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="renderer" content="webkit">
 		<title>虚无而生x星痕辉光Rtruio</title>
 		<script src="js/jquery-3.3.1.min.1.js"></script>
-		<link rel="shortcut icon" type="image/x-icon"  href="img/favicon.jpg"/>
-		<link rel="stylesheet" type="text/css" href="css/main.css"  />
+		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.jpg" />
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
@@ -15,13 +15,15 @@
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/jquery.growl.js"></script>
 		<script src="js/jquery.base64.js"></script>
+		<script src="js/bootbox.js"></script>
 		<script src="js/download.js"></script>
 		<style type="text/css">
 			@font-face {
-				font-family:'Minecraft';
+				font-family: 'Minecraft';
 				src: url(fonts/Minecraft.ttf);
 			}
-			a{
+
+			a {
 				text-decoration: none;
 			}
 		</style>
@@ -29,111 +31,486 @@
 			
 		</script>
 
-</head>
-<body>
-	<div class="main_page" id="main_page" style="background-image: url(img/01.jpg);">
-	<div class="main_top" style="background-image: url(img/dark60-bg-repeat.png);opacity: 0.7;" ></div>
-	<nav class="navbar" role="navigation" style="z-index: 1000" >
-		<div class="container-fluid" >
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#example-navbar-collapse" style="z-index: 10000;"><b class="caret"></b>
-				<span class="sr-only">切换导航</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a  class="main_top_title" href="index.html" >rtruio</a>
-		</div>
-		<div class="collapse navbar-collapse" id="example-navbar-collapse" style="color: white;min-width: 900px;" >
-			<ul class="nav navbar-nav" style="color: white;">
-				<li class="dropdown"  ><a href="#" class="dropdown-toggle" data-toggle="dropdown"  >服务器介绍</a>
-					<ul class="dropdown-menu" style="background-color: rgb(255,255,255,0.3);" >
-						<li><a href="http://www.mcbbs.net/thread-811989-1-1.html" target="_blank">MCBBS宣传</a></li>
-						<li><a href="http://www.mckuai.com/thread-2060746.html" target="_blank">麦块宣传</a></li>
-						<li class="divider" style="background-color: gray;"></li>
-						<li><a href="https://play.mcmod.cn/sv20181426.html" target="_blank">MCmod</a></li>
-						<li><a href="https://tieba.baidu.com/p/6045698510?red_tag=1931250082" target="_blank">贴吧</a></li>
-					</ul>
-				</li>
-				<li class="active" ><a href="#" style="width: 90px;margin-left: 20px;">合成查询</a></li>
-				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="width: 80px;margin-left: 20px;">教程 <b class="caret"></b></a>
-					<ul class="dropdown-menu" style="background-color: rgb(255,255,255,0.3);left:-20px;" >
-						<li><a href="http://www.mcbbs.net/" target="_blank">MCbbs</a></li>
-						<li><a href="https://www.mcmod.cn/" target="_blank">MCmod</a></li>
-						<li class="divider" style="background-color: gray;"></li>
-						<li><a href="https://www.mcmod.cn/class/204.html" target="_blank">神秘4</a></li>
-						<li><a href="https://www.mcmod.cn/class/332.html" target="_blank">植物魔法</a></li>
-						<li><a href="https://www.mcmod.cn/class/402.html" target="_blank">超能力</a></li>
-						<li><a href="https://www.mcmod.cn/class/401.html" target="_blank">虚无世界2</a></li>
-						<li><a href="https://www.mcmod.cn/class/260.html" target="_blank">应用能源2(AE2)</a></li>
-						<li class="divider" style="background-color: gray;"></li>
-						<li><a href="https://www.mcmod.cn/tools/tctool/" target="_blank">神秘研究助手</a></li>
-						<li><a href="https://www.mcmod.cn/item/aspects/" target="_blank">神秘要素表</a></li>
-					</ul>
-				</li>
-	
-				<li class="active" ><a href="#" style="width: 80px;margin-left: 20px;">排行榜</a></li>
-				<li class="active" ><a href="http://www.mcrmb.com/cz/15594" style="width: 60px;margin-left: 20px;" target="_blank">赞助</a></li>
-				<form class="navbar-form navbar-left" role="search" action="https://www.mcmod.cn/s" id="s">
-					  <div class="form-group" style="opacity: 0.7;">
-						<input type="text" class="form-control" placeholder="不会的就搜嗷" name="key">
-					  </div>
-					  <button type="submit" class="btn btn-default" style="opacity: 0.7;" id="mcmod" formtarget="_blank">搜嗷</button>
-				</form>
+	</head>
+	<body>
+		<div class="main_page" id="main_page">
+			<div class="main_top" style="background-image: url(img/dark60-bg-repeat.png);opacity: 0.7;"></div>
+			<nav class="navbar" role="navigation" style="z-index: 1000">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#example-navbar-collapse" style="z-index: 10000;"><b class="caret"></b>
+							<span class="sr-only">切换导航</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="main_top_title" href="index.html">rtruio</a>
+					</div>
+					<div class="collapse navbar-collapse" id="example-navbar-collapse"
+						style="color: white;min-width: 900px;">
+						<ul class="nav navbar-nav" style="color: white;">
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">服务器介绍</a>
+								<ul class="dropdown-menu" style="background-color: rgb(255,255,255,0.3);">
+									<li><a href="http://www.mcbbs.net/thread-811989-1-1.html"
+											target="_blank">MCBBS宣传</a></li>
+									<li><a href="http://www.mckuai.com/thread-2060746.html" target="_blank">麦块宣传</a>
+									</li>
+									<li class="divider" style="background-color: gray;"></li>
+									<li><a href="https://play.mcmod.cn/sv20181426.html" target="_blank">MCmod</a></li>
+									<li><a href="https://tieba.baidu.com/p/6045698510?red_tag=1931250082"
+											target="_blank">贴吧</a></li>
+								</ul>
+							</li>
+							<li class="active"><a href="#" style="width: 90px;margin-left: 20px;">合成查询</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+									style="width: 80px;margin-left: 20px;">教程 <b class="caret"></b></a>
+								<ul class="dropdown-menu" style="background-color: rgb(255,255,255,0.3);left:-20px;">
+									<li><a href="http://www.mcbbs.net/" target="_blank">MCbbs</a></li>
+									<li><a href="https://www.mcmod.cn/" target="_blank">MCmod</a></li>
+									<li class="divider" style="background-color: gray;"></li>
+									<li><a href="https://www.mcmod.cn/class/204.html" target="_blank">神秘4</a></li>
+									<li><a href="https://www.mcmod.cn/class/332.html" target="_blank">植物魔法</a></li>
+									<li><a href="https://www.mcmod.cn/class/402.html" target="_blank">超能力</a></li>
+									<li><a href="https://www.mcmod.cn/class/401.html" target="_blank">虚无世界2</a></li>
+									<li><a href="https://www.mcmod.cn/class/260.html" target="_blank">应用能源2(AE2)</a>
+									</li>
+									<li class="divider" style="background-color: gray;"></li>
+									<li><a href="https://www.mcmod.cn/tools/tctool/" target="_blank">神秘研究助手</a></li>
+									<li><a href="https://www.mcmod.cn/item/aspects/" target="_blank">神秘要素表</a></li>
+								</ul>
+							</li>
 
-			</ul>
-			
-				<ul class="nav navbar-nav navbar-right " id="personalInfo">
-					<li><a id="loginButton" data-toggle="modal" data-target="#myModal"  style="cursor: pointer;transition: .5s;" ><span class="glyphicon glyphicon-log-in" ></span> 点我登录</a></li>
-				</ul>
-					
-					
-					
-			
-		</div>
-		</div>
-	</nav>
-	
-	<div class="main_d">
-		<div class="nav">
-			<ul class="nav nav-pills"style="margin-top: 20px;" id="myTab">
-			  <li role="presentation" class="active"><a href="#serviceSetting" onclick="getserviceSetting()">服务器设置</a></li>
-			  <li role="presentation"><a href="#userSetting">用户管理</a></li>
-			  <li role="presentation"><a href="#webSetting">网页管理</a></li>
-			</ul>
-		</div>
-		<div class="tab-content"> 
-				<!--服务器设置-->
-		      <div class="tab-pane active" id="serviceSetting">
-				  
-				  启用/关闭服务器
-			  </div> 
-			  
-			  <!--用户管理-->
-		      <div class="tab-pane" id="userSetting">
-				  添加账户
-				  修改账户
-				  删除账户
-				  查询账户
-			  </div> 
-			  
-			  <!--网页管理-->
-		      <div class="tab-pane" id="webSetting">
-				  标语设置
-				  随机背景
-				  客户端上传
-				  修改简介信息
-				  当前在线人数
-				  服务器状态
-			  </div> 
-		    </div> 
-	</div>
-	<!--      底层       -->
-	    <div class="main_botton">
-	    		<div class=""></div>Made with love by Deliberate. Recently update: 2019.08.06
-	    		</div>
-	    	<div class="notice"></div>
+							<li class="active"><a href="#" style="width: 80px;margin-left: 20px;">排行榜</a></li>
+							<li class="active"><a href="http://www.mcrmb.com/cz/15594"
+									style="width: 60px;margin-left: 20px;" target="_blank">赞助</a></li>
+							<form class="navbar-form navbar-left" role="search" action="https://www.mcmod.cn/s" id="s">
+								<div class="form-group" style="opacity: 0.7;">
+									<input type="text" class="form-control" placeholder="不会的就搜嗷" name="key">
+								</div>
+								<button type="submit" class="btn btn-default" style="opacity: 0.7;" id="mcmod"
+									formtarget="_blank">搜嗷</button>
+							</form>
+
+						</ul>
+
+						<ul class="nav navbar-nav navbar-right " id="personalInfo">
+							<li><a id="loginButton" data-toggle="modal" data-target="#myModal"
+									style="cursor: pointer;transition: .5s;"><span
+										class="glyphicon glyphicon-log-in"></span> 点我登录</a></li>
+						</ul>
+
+
+
+
+					</div>
+				</div>
+			</nav>
+
+			<div class="main_d" style="overflow-y:auto;">
+				<div class="nav">
+					<ul class="nav nav-pills" style="margin-top: 20px;" id="myTab">
+						<li role="presentation" class="active"><a href="#serviceSetting"
+								onclick="getserviceSetting()">服务器设置</a></li>
+						<li role="presentation"><a href="#userSetting" onclick="loadUserInfo()">用户管理</a></li>
+						<li role="presentation"><a href="#webSetting" onclick="loadSerInfo()">网页管理</a></li>
+					</ul>
+				</div>
+				<div class="tab-content">
+					<!--服务器设置-->
+					<div class="tab-pane active" id="serviceSetting">
+						<div id="serviceSetting1" style="margin-top: 20px;"></div>
+						<div id="serviceSetting2" style="margin-top: 20px;"></div>
+					</div>
+
+					<!--用户管理-->
+					<div class="tab-pane" id="userSetting">
+						<div class="fixed-table-toolbar">
+							<div class="pull-left search" style="margin-top: 20px;">
+								<input id="search-keyword" class="form-control" placeholder="请输入用户名查询">
+							</div>
+							<div class="columns columns-left btn-group pull-left" style="margin-top: 20px;">
+								<button id="search-button" type="button" class="btn btn-primary" onclick="SelectUser()">查询</button>
+							</div>
+							<div class="columns columns-left btn-group pull-left" style="margin-top: 20px;">
+								<button id="search-button" type="button" class="btn btn-primary btn-success" onclick="loadUserInfo()">重置</button>
+							</div>
+
+
+							<!-- 按钮触发模态框 -->
+							<div class="columns columns-right btn-group pull-right" style="margin-top: 20px;">
+								<button type="button" class="btn btn-primary" data-toggle="modal"
+									data-target="#myModal">添加用户</button>
+							</div>
+
+							<!-- 新增模态框（Modal） -->
+							<form action="##" method="post" class="form-horizontal" role="form" onsubmit="return false"
+								id="formAdduser">
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+									aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">
+													&times;
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													新增用户
+												</h4>
+											</div>
+											<!-- 新增用户 模态框body -->
+											<div class="modal-body" style="height: 100%;">
+												<!--
+												<div class="form-group">
+													<label for="firstname" class="col-sm-3 control-label">用户类型</label>
+													<div class="col-sm-7">
+														<select data-placeholder="选择用户类型..." class="form-control"
+															name="project_name" id="project_name">
+															<option value="110000" hassubinfo="true">普通用户</option>
+															<option value="120000" hassubinfo="true">管理员</option>
+														</select>
+
+													</div>
+												</div>
+												-->
+												<div class="form-group">
+													<label for="ADDuserID" class="col-sm-3 control-label">用户ID</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="ADDuserID"
+															id="ADDuserID" placeholder="请输入用户密码">
+														</input>
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label for="ADDusername" class="col-sm-3 control-label">用户名称</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="ADDusername"
+															id="ADDusername" placeholder="请输入用户名称，仅限输入英文字符">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="ADDpassword" class="col-sm-3 control-label">用户密码</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="ADDpassword"
+															id="ADDpassword" placeholder="请输入用户密码">
+														</input>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="ADDphonenumber"
+														class="col-sm-3 control-label">手机账号</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="ADDphonenumber"
+															id="ADDphonenumber" placeholder="请输入11位手机账号">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="ADDgametime" class="col-sm-3 control-label">游戏时间</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="ADDgametime"
+															id="ADDgametime" placeholder="请输入游戏时间">
+														</input>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="ADDinapppurchase"
+														class="col-sm-3 control-label">累计充值</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="ADDinapppurchase"
+															id="ADDinapppurchase" placeholder="请输入累计充值">
+														</input>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="ADDdescripption"
+														class="col-sm-3 control-label">用户简介</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="ADDdescripption"
+															id="ADDdescripption" placeholder="请输入用户描述">
+														</input>
+													</div>
+												</div>
+
+
+											</div>
+											<!-- 模态框底部-->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">关闭</button>
+												<button type="button" class="btn btn-primary"
+													onclick="AddUserInfo()">提交</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal -->
+								</div>
+							</form>
+
+
+							<!-- 修改数据模态框（Modal） -->
+							<form action="##" method="post" class="form-horizontal" role="form">
+								<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+									aria-labelledby="updateModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">
+													&times;
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													修改信息
+												</h4>
+											</div>
+											<!-- 修改信息 模态框body -->
+											<div class="modal-body" style="height: 100%;">
+												<!--
+													<div class="form-group">
+														<label for="firstname" class="col-sm-3 control-label">用户类型</label>
+														<div class="col-sm-7">
+															<select data-placeholder="选择用户类型..." class="form-control"
+																name="project_name" id="project_name">
+																<option value="110000" hassubinfo="true">普通用户</option>
+																<option value="120000" hassubinfo="true">管理员</option>
+															</select>
+									
+														</div>
+													</div>
+													-->
+												<div class="form-group">
+													<label for="UpdateuserID" class="col-sm-3 control-label">用户ID</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="UpdateuserID"
+															id="UpdateuserID" placeholder="请输入用户密码" readonly="readonly">
+														</input>
+													</div>
+												</div>
+												
+												<div class="form-group">
+													<label for="Updateusername" class="col-sm-3 control-label">用户名称</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="Updateusername"
+															id="Updateusername" placeholder="请输入用户名称，仅限输入英文字符">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="Updatepassword" class="col-sm-3 control-label">用户密码</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="Updatepassword"
+															id="Updatepassword" placeholder="请输入用户密码">
+														</input>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="Updatephonenumber"
+														class="col-sm-3 control-label">手机账号</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="Updatephonenumber"
+															id="Updatephonenumber" placeholder="请输入11位手机账号">
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="Updategametime" class="col-sm-3 control-label">游戏时间</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="Updategametime"
+															id="Updategametime" placeholder="请输入游戏时间">
+														</input>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="Updateinapppurchase"
+														class="col-sm-3 control-label">累计充值</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="Updateinapppurchase"
+															id="Updateinapppurchase" placeholder="请输入累计充值">
+														</input>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="Updatedescripption"
+														class="col-sm-3 control-label">用户简介</label>
+													<div class="col-sm-7">
+														<input type="text" class="form-control" name="Updatedescripption"
+															id="Updatedescripption" placeholder="请输入用户描述">
+														</input>
+													</div>
+												</div>
+
+
+											</div>
+											<!-- 模态框底部-->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">关闭</button>
+												<button type="button" class="btn btn-primary"
+													onclick="UpdateUserInfo()">提交</button>
+											</div>
+										</div><!-- /.modal-content -->
+									</div><!-- /.modal -->
+
+								</div>
+							</form>
+
+						</div>
+						<div>
+							<table class="table table-hover table-bordered table-condensed" style="margin-top: 10px;">
+								<thead>
+									<tr>
+										<td>#</td>
+										<td>用户名</td>
+										<td>密码</td>
+										<td>手机号</td>
+										<td>简介</td>
+										<td>游戏时间</td>
+										<td>累计内购</td>
+										<td>修改</td>
+									</tr>
+								</thead>
+
+								<tbody id="myTBody">
+
+								</tbody>
+							</table>
+						</div>
+
+
+					</div>
+
+					<!--网页管理-->
+					<div class="tab-pane" id="webSetting">
+						服务器设置
+						<div>
+							<div class="fixed-table-toolbar">
+								<!-- 修改数据模态框（Modal） -->
+								<form action="##" method="post" class="form-horizontal" role="form">
+									<div class="modal fade" id="updateModal1" tabindex="-1" role="dialog"
+										aria-labelledby="updateModalLabel" aria-hidden="true">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-hidden="true">
+														&times;
+													</button>
+													<h4 class="modal-title" id="myModalLabel">
+														修改信息
+													</h4>
+												</div>
+												<!-- 修改信息 模态框body -->
+												<div class="modal-body" style="height: 100%;">
+													<div class="form-group">
+														<label for="UpdatewebID" class="col-sm-3 control-label">服务器ID</label>
+														<div class="col-sm-7">
+															<input type="text" class="form-control" name="UpdatewebID"
+																id="UpdatewebID" placeholder="服务器ID" readonly="readonly">
+															</input>
+														</div>
+													</div>
+													
+													<div class="form-group">
+														<label for="UpdatewebVer" class="col-sm-3 control-label">服务器版本</label>
+														<div class="col-sm-7">
+															<input type="text" class="form-control" name="UpdatewebVer"
+																id="UpdatewebVer" placeholder="请输入服务器版本">
+														</div>
+													</div>
+							
+													<div class="form-group">
+														<label for="Updatedate" class="col-sm-3 control-label">更新日期</label>
+														<div class="col-sm-7">
+															<input type="text" class="form-control" name="Updatedate"
+																id="Updatedate" placeholder="请输入更新日期">
+															</input>
+														</div>
+													</div>
+							
+													<div class="form-group">
+														<label for="UpdateserSize"
+															class="col-sm-3 control-label">客户端大小</label>
+														<div class="col-sm-7">
+															<input type="text" class="form-control" name="UpdateserSize"
+																id="UpdateserSize" placeholder="请输入客户端大小">
+														</div>
+													</div>
+													
+													<div class="form-group">
+														<label for="UpdateserPg"
+															class="col-sm-3 control-label">客户端简介</label>
+														<div class="col-sm-7">
+															<input type="text" class="form-control" name="UpdateserPg"
+																id="UpdateserPg" placeholder="请输入客户端简介">
+														</div>
+													</div>
+							
+												</div>
+												<!-- 模态框底部-->
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">关闭</button>
+													<button type="button" class="btn btn-primary"
+														onclick="UpdateSerInfo()">提交</button>
+												</div>
+											</div><!-- /.modal-content -->
+										</div><!-- /.modal -->
+							
+									</div>
+								</form>
+							
+							</div>
+							<div>
+								<table class="table table-hover table-bordered" style="margin-top: 10px;">
+									<thead>
+										<tr>
+											<td>#</td>
+											<td>简介</td>
+											<td>版本</td>
+											<td>最后更新日期</td>
+											<td>大小</td>
+											<td>修改</td>
+										</tr>
+									</thead>
+							
+									<tbody id="webInfo">
+							
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						上传背景
+						<div>
+							<form action="myUpload.ashx" method="post" enctype="multipart/form-data" id="formUpload">
+								<input type="file" name="fileUpload" id="fileUpload" accept="image/*" style="margin-top: 10px;" />
+								<input type="text" id="txtImgYesOrNo" value="N" name="txtImgYesOrNo" hidden />
+							</form>
+							<div id="divImg" style="margin-top: 20px;">
+								<img src="" id="selectedImg" style="width: 300px;height: 300px; display: none;" />
+							</div>
+							<button class="btn btn-success" onclick="btnSendClick()" style="margin-top: 10px;">上传</button>
+						</div>
+						客户端上传
+						<div></div>
+						客户端信息
+						<div></div>
+					</div>
+				</div>
+			</div>
+			<!--      底层       -->
+			<div class="main_botton">
+				<div class=""></div>Made with love by Deliberate. Recently update: 2019.08.06
+			</div>
+			<div class="notice"></div>
 		</div>
 	</body>
 </html>
