@@ -1,4 +1,4 @@
-package com.cy.pj.common.utils;
+package com.xghh.mc.utils;
 
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;

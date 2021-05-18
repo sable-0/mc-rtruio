@@ -1,4 +1,4 @@
-package com.cy.pj.common.utils;
+package com.xghh.mc.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

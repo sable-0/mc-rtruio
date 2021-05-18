@@ -10,11 +10,12 @@
 		<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.growl.css" />
-		<script src="js/main_animate.js"></script>
+		<script src="js/main.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/jquery.cookie.js"></script>
 		<script src="js/jquery.growl.js"></script>
 		<script src="js/bootbox.js"></script>
+		<script src="js/jquery.base64.js"></script>
 		<style type="text/css">
 			@font-face {
 				font-family:'Minecraft';
@@ -29,7 +30,7 @@
 
 </head>
 <body>
-	<div class="main_page" id="main_page" style="background-image: url(img/01.jpg);">
+	<div class="main_page" id="main_page" >
 	<div class="main_top" style="background-image: url(img/dark60-bg-repeat.png);opacity: 0.7;" ></div>
 	<nav class="navbar" role="navigation" style="z-index: 1000" >
 		<div class="container-fluid" >
@@ -85,8 +86,8 @@
 				<!-- <ul class="nav navbar-nav navbar-right ">
 					<li><a id="loginButton" data-toggle="modal" data-target="#myModal" style="cursor: pointer;transition: .5s;"><span class="glyphicon glyphicon-log-in" ></span> 点我登录</a></li>
 				</ul> -->
-				<ul class="nav navbar-nav navbar-right ">
-					<li><a id="loginButton" data-toggle="modal"  style="cursor: pointer;transition: .5s;" href="https://login2.nide8.com:233/account/login" target="_blank"><span class="glyphicon glyphicon-log-in" ></span> 点我登录</a></li>
+				<ul class="nav navbar-nav navbar-right " id="personalInfo">
+					<li><a id="loginButton" data-toggle="modal" data-target="#myModal"  style="cursor: pointer;transition: .5s;" ><span class="glyphicon glyphicon-log-in" ></span> 点我登录</a></li>
 				</ul>
 			
 		</div>
@@ -112,55 +113,46 @@
 					</div>
 					<!--登陆框中间部分(from表单)-->
 					<div class="modal-body">
-						<form class="form-horizontal" action="Login.ashx" id="form_data" method="post" enctype="multipart/form-data">
+						<form class="form-horizontal" id="formUpload" method="post" enctype="multipart/form-data">
 							<br />
-							<!--用户框-->
-							<div class="form-group">
-								<label for="username" class="col-sm-3 control-label">用户名</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="username" name="username" placeholder="请输入您的用户名或绑定的QQ">
-								</div>
-							</div>
-							<!--密码框-->
-							<div class="form-group">
-								<label for="password" class="col-sm-3 control-label" >密码</label>
-								<div class="col-sm-8">
-									<input type="password" class="form-control" id="password" id="password" placeholder="请输入游戏内的密码">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="number" class="col-sm-3 control-label" >密码</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" id="number" id="number" placeholder="手机号">
-								</div>
-							</div>
-							
-							<!--记住密码-->
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-4">
-									<div class="checkbox">
-										<label>
-											<input type="checkbox"> 记住密码
-										</label>
+								<div class="form-group">
+									<label for="username" class="col-sm-3 control-label">用户名</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="username" name="username" placeholder="请输入您的用户名或绑定的QQ" />
 									</div>
 								</div>
-								<div class="col-sm-offset-1 col-sm-4" style="float: left;margin-left: -20px;">
-									<div class="checkbox">
-										<label>	
-											<input type="checkbox"> 自动登录
-										</label>
+								<div class="form-group">
+									<label for="password" class="col-sm-3 control-label">密码</label>
+									<div class="col-sm-8">
+										<input type="password" class="form-control" id="password" name="password" placeholder="请输入游戏内的密码" />
 									</div>
 								</div>
-							</div>
+								<!--
+								<div class="form-group">
+									<label for="number" class="col-sm-3 control-label">手机</label>
+									<div class="col-sm-8">
+										<input type="text" class="form-control" id="number" name="number" placeholder="手机号"/>
+									</div>
+								</div>
+								-->
+								<div class="form-group">
+									<div class="col-sm-offset-3 col-sm-4">
+										<div class="checkbox">
+											<label>
+												<input type="checkbox" id="SaveInfo" > 记住密码
+											</label>
+										</div>
+									</div>
+								</div>
+							<!--登陆按钮-->
 							
+							<div class="form-group">
+								<div class="col-sm-offset-7 col-sm-10">
+									<button class="btn btn-default" type="button" data-dismiss="modal" data-target="#myModal">取消</button>
+									<button class="btn btn-primary " type="button" onclick="btnLogin()">登录</button>
+								</div>
+							</div>
 						</form>
-						
-						<!--登陆按钮-->
-						<div class="form-group">
-							<div class="col-sm-offset-7 col-sm-10">
-								<button class="btn btn-primary " type="button" onclick="btnLogin()">登录</button>
-							</div>
-						</div>
 						
 				</div>	
 			</div>
@@ -178,11 +170,14 @@
 		<div class="main_center_title">
 			<h1 class="title"><img src="img/logo.png" style="height: 80px;width: 80px;" />Rtruio虚无而生  </h1>
 			<p class="title_one">Welcome to my server !</p>
-			<a class="btn_main_login" style="text-decoration: none;" href="download.html">下载客户端</a>
-			<a class="btn_main_login" style="margin-left: 50px;text-decoration: none;"
-			 data-toggle="modal" data-target="#myModal">个人中心</a>
-			<p class="service_status">当前服务器状态：<span>开启</span>&nbsp;&nbsp;&nbsp;
-			在线人数：<span id="num">2</span> </p>
+			<div id="personalInfo2">
+				<a class="btn_main_login" style="text-decoration: none;" href="download.html">下载客户端</a>
+				<a class="btn_main_login" style="margin-left: 50px;text-decoration: none;"
+				 data-toggle="modal" data-target="#myModal" >个人中心</a>
+			</div>
+			
+			<p class="service_status">当前服务器状态：<span id="serState"></span>&nbsp;&nbsp;&nbsp;
+			在线人数：<span id="serNum"></span> </p>
 		</div>
 	</div>
 	<div class="ooooop" style="display:block;">
@@ -190,8 +185,7 @@
 		<div class="shadow">aaa</div>
 	</div>
 
-
-
+	<!--      底层       -->
     <div class="main_botton">
     		<div class=""></div>Made with love by Deliberate. Recently update: 2019.08.06
     		</div>

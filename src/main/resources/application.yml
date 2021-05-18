@@ -2,4 +2,18 @@ server:
   port: 9444
 
 shiro:
-  loginUrl: http://localhost:9444/index.html
+  loginUrl: /index.html
+  mvc:
+    view:
+      suffix: .html
+      prefix: /
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mc-rtruio?severTimezone=GMT%2B8&characterEncoding=utf8
+    username: root
+    password: tyc000731
+
+mybatis:
+  mapper-locations:
+    - classpath:/mapper/*.xml
