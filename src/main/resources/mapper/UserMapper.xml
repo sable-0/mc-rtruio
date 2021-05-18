@@ -7,4 +7,19 @@
     <select id="selectUserByName" resultType="com.xghh.mc.pojo.User">
         select * from userinfo where UserName=#{UserName}
     </select>
+
+    <select id="selectAllUser" resultType="com.xghh.mc.pojo.User">
+        select * from userinfo
+    </select>
+
+    <insert id="insertUser" parameterType="com.xghh.mc.pojo.User" keyProperty="id" useGeneratedKeys="true">
+        insert into userinfo
+        (UserName,Password,PhoneNumber,Salt)
+        values
+        (#{UserName},#{Password},#{PhoneNumber},#{Salt})
+    </insert>
+
+    <delete id="deleteUserById">
+        delete from userinfo where UserId=#{UserId}
+    </delete>
 </mapper>

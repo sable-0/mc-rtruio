@@ -1,12 +1,10 @@
-package com.xghh.mc.dao;
+package com.xghh.mc.service;
 
 import com.xghh.mc.pojo.User;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-@Mapper
-public interface UserDao {
+public interface UserService {
     //通过用户名查询用户
     User selectUserByName(String UserName);
 
