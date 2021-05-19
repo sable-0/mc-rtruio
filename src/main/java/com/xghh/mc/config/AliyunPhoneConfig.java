@@ -19,8 +19,8 @@ import com.xghh.mc.pojo.User;
 public class AliyunPhoneConfig {
     private static final String product = "Dysmsapi";   //产品名
     private static final String domian = "dysmsapi.aliyuncs.com";  //域名
-    private static final String accessKeyId = "LTAI5t9eygKLTX2nYtyHmpvZ";
-    private static final String accessKeySecret = "Y6vZvBYQgPsPJ6fqnmAOPsdNarv5Tf";
+    private static final String accessKeyId = "";
+    private static final String accessKeySecret = "";
 
     public static SendSmsResponse sendALiSms(User user, String code)throws Exception{
         //区域id参考 https://www.alibabacloud.com/help/zh/doc-detail/198107.htm
