@@ -3,13 +3,12 @@ package com.xghh.mc.controller;
 import com.xghh.mc.pojo.JsonResult;
 import com.xghh.mc.pojo.User;
 import com.xghh.mc.service.UserService;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import com.xghh.mc.utils.PhoneUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController("/user")
-@RequiresAuthentication //只有用户登陆后才能进行操作
 public class UserController {
     @Autowired
     private UserService userService;
@@ -35,6 +34,7 @@ public class UserController {
         userService.insertUser(user);
         return new JsonResult("save ok");
     }
+
 
 
 }

@@ -16,4 +16,8 @@ public interface UserService {
 
     //根据id删除用户
     void deleteUserById(int UserId);
+
+    //发送验证码
+    public String sendSms(User user,String phoneNumber) throws Exception;
+
 }

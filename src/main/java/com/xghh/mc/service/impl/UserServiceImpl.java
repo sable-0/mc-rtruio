@@ -1,5 +1,7 @@
 package com.xghh.mc.service.impl;
 
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
+import com.xghh.mc.config.AliyunPhoneConfig;
 import com.xghh.mc.dao.UserDao;
 import com.xghh.mc.pojo.User;
 import com.xghh.mc.service.UserService;
@@ -42,5 +44,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(int UserId) {
         userDao.deleteUserById(UserId);
+    }
+
+    @Override
+    public String sendSms(User user, String phoneNumber) throws Exception {
+        String code = String.valueOf((int)((Math.random() * 9 + 1) * 100000));
+        SendSmsResponse response = AliyunPhoneConfig.sendALiSms(user,code);
+        if(response == null){
+            //发送失败
+            return "failed";
+        }
+        return code;
     }
 }
