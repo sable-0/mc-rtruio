@@ -16,4 +16,4 @@
 
 Project部署方式：
 平台：Visual Studio 2019，SQL Server 2019，云服务端（可行）<br>
-方式：使用VS2019发布网站并将其部署至IIS,数据库文件
+方式：使用VS2019发布网站并将其部署至IIS,数据库文件存放在/DataBase中
